@@ -1,13 +1,12 @@
 import { genSaltSync, hashSync } from 'bcrypt-ts';
 import { RegistrationFormDataType } from '../types';
+const $ = (element: string) => document.querySelector(element);
 /**
  * функция регистрации пользователей
  */
-function registrationHandler(event) {
-  //event.preventDefault();
-  console.log('sd');
-  debugger;
-  return false;
+const registrationForm = $('#registrationForm') as HTMLInputElement;
+registrationForm?.addEventListener('submit', function(event) {
+  event.preventDefault();
   const formData = new FormData(this);
   let username = formData.get('username')?.toString().trim();
   let email = formData.get('email')?.toString().trim();
@@ -62,4 +61,5 @@ function registrationHandler(event) {
   // };
   // xhr.setRequestHeader('Content-Type', 'application/json');
   // xhr.send(JSON.stringify(DATA));
-}
+  return false;
+});
